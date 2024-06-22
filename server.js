@@ -98,12 +98,14 @@ app.post('/save-topics', async (req, res) => {
 app.get('/get-activities', async (req, res) => {
   try {
     const activities = await activitiesCollection.find().toArray();
-    res.status(200).json(activities);
+    const response = { topics: activities };
+    res.status(200).json(response);
   } catch (error) {
     console.error('Error fetching activities:', error);
     res.status(500).send('Error fetching activities');
   }
 });
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
