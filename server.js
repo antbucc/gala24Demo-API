@@ -144,6 +144,20 @@ app.post('/save-student-action', async (req, res) => {
   }
 });
 
+// Endpoint to retrieve the actions of all students
+app.get('/student-actions', async (req, res) => {
+  try {
+    // Retrieve all student actions from the collection
+    const studentActions = await studentsCollection.find({}).toArray();
+
+    res.status(200).json(studentActions);
+  } catch (error) {
+    console.error('Error retrieving student actions:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
 
 
 
