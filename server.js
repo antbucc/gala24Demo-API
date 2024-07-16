@@ -100,6 +100,44 @@ app.get('/get-activities', async (req, res) => {
   }
 });
 
+// Endpoint to save a student's action
+app.post('/save-student-action', async (req, res) => {
+  const { studentID, topicID, answer, correct } = req.body;
+
+  const newResponse = {
+    responseID: new ObjectId(),  // Generate a new ObjectId for the responseID
+    topicID: topicID,
+    answer: answer,
+    correct: correct
+  };
+
+  try {
+    // Find the student data by studentID
+    let studentData = await studentsCollection.findOne({ studentID: studentID });
+
+    if (!studentData) {
+      // If no document is found, create a new one
+      studentData = { studentID: studentID, responses: [] };
+    }
+
+    // Add the new response to the responses array
+    studentData.responses.push(newResponse);
+
+    // Update or insert the document
+    await studentsCollection.updateOne(
+      { studentID: studentID },
+      { $set: studentData },
+      { upsert: true }
+    );
+
+    res.status(201).send('Student action saved successfully');
+  } catch (error) {
+    console.error('Error saving student action:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
