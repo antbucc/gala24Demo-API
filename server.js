@@ -101,9 +101,15 @@ app.get('/get-activities', async (req, res) => {
   }
 });
 
+const { ObjectId } = require('mongodb');
+
 // Endpoint to save a student's action
 app.post('/save-student-action', async (req, res) => {
   const { studentID, topicID, answer, correct } = req.body;
+
+  if (typeof studentID !== 'string' || typeof topicID !== 'string' || typeof answer !== 'string' || typeof correct !== 'boolean') {
+    return res.status(400).send('Invalid input types');
+  }
 
   const newResponse = {
     responseID: new ObjectId(),  // Generate a new ObjectId for the responseID
@@ -137,6 +143,7 @@ app.post('/save-student-action', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
 
 
 
