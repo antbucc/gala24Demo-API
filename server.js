@@ -148,7 +148,7 @@ app.post('/save-student-action', async (req, res) => {
 app.get('/student-actions', async (req, res) => {
   try {
     // Retrieve all student actions from the collection
-    const studentActions = await studentsCollection.find({}).toArray();
+    const studentActions = await actionsCollection.find({}).toArray();
 
     res.status(200).json(studentActions);
   } catch (error) {
