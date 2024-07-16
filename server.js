@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT || 5001; 
+const port = process.env.PORT || 5002; 
 
 
 const uri = process.env.MONGO_URI;
@@ -35,25 +35,21 @@ const topicsCollection = database.collection('topics');
 // SET OF THE BACKEND APIs
 // Endpoint to save a new learning activity pair for a specific topic
 app.post('/save-activity', async (req, res) => {
- // console.log(JSON.stringify(req.body));
   const { topic, learningObjective, activityType, assignment, correctSolutions, distractors, easilyDiscardableDistractors, feedback, readingMaterial, level } = req.body;
   
-  const quiz =
-{     readingMaterial: readingMaterial,
-      learningObjective: learningObjective,
-      activityType: activityType,
-      assignment: assignment,
-      correctSolutions: correctSolutions,
-      distractors: distractors,
-      easilyDiscardableDistractors: easilyDiscardableDistractors,
-      feedback: feedback,
-      level: level,
+  const newActivity = {     
+    readingMaterial: readingMaterial,
+    learningObjective: learningObjective,
+    activityType: activityType,
+    assignment: assignment,
+    correctSolutions: correctSolutions,
+    distractors: distractors,
+    easilyDiscardableDistractors: easilyDiscardableDistractors,
+    feedback: feedback,
+    level: level,
   };
 
-  
-
   try {
-
     // Find the learning activity by topic
     let learningActivity = await activitiesCollection.findOne({ topic: topic });
 
@@ -63,9 +59,7 @@ app.post('/save-activity', async (req, res) => {
     }
 
     // Add the new activity to the activities array
-    learningActivity.activities.push({
-      activity: quiz
-    });
+    learningActivity.activities.push(newActivity);
 
     // Update or insert the document
     await activitiesCollection.updateOne(
@@ -80,6 +74,7 @@ app.post('/save-activity', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
 
 // endpoint to save material and topics
 app.post('/save-topics', async (req, res) => {
