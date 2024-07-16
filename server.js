@@ -103,7 +103,6 @@ app.get('/get-activities', async (req, res) => {
 
 const { ObjectId } = require('mongodb');
 
-const { ObjectId } = require('mongodb');
 
 // Endpoint to save a student's action
 app.post('/save-student-action', async (req, res) => {
