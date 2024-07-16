@@ -29,6 +29,7 @@ client.connect(err => {
 const database = client.db('GALA2024');
 const activitiesCollection = database.collection('activities');
 const topicsCollection = database.collection('topics');
+const actionsCollection = database.collection('actions');
 
 
 
@@ -113,7 +114,7 @@ app.post('/save-student-action', async (req, res) => {
 
   try {
     // Find the student data by studentID
-    let studentData = await studentsCollection.findOne({ studentID: studentID });
+    let studentData = await actionsCollection.findOne({ studentID: studentID });
 
     if (!studentData) {
       // If no document is found, create a new one
@@ -124,7 +125,7 @@ app.post('/save-student-action', async (req, res) => {
     studentData.responses.push(newResponse);
 
     // Update or insert the document
-    await studentsCollection.updateOne(
+    await actionsCollection.updateOne(
       { studentID: studentID },
       { $set: studentData },
       { upsert: true }
