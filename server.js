@@ -39,7 +39,7 @@ app.post('/save-activity', async (req, res) => {
   const { topic, learningObjective, activityType, assignment, correctSolutions, distractors, easilyDiscardableDistractors, feedback, readingMaterial, level } = req.body;
   
   const quiz =
-{   
+{     readingMaterial: readingMaterial,
       learningObjective: learningObjective,
       activityType: activityType,
       assignment: assignment,
@@ -64,7 +64,6 @@ app.post('/save-activity', async (req, res) => {
 
     // Add the new activity to the activities array
     learningActivity.activities.push({
-      readingMaterial: readingMaterial,
       activity: quiz
     });
 
