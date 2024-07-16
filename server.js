@@ -103,6 +103,8 @@ app.get('/get-activities', async (req, res) => {
 
 const { ObjectId } = require('mongodb');
 
+const { ObjectId } = require('mongodb');
+
 // Endpoint to save a student's action
 app.post('/save-student-action', async (req, res) => {
   const { studentID, topicID, answer, correct } = req.body;
@@ -115,7 +117,8 @@ app.post('/save-student-action', async (req, res) => {
     responseID: new ObjectId(),  // Generate a new ObjectId for the responseID
     topicID: topicID,
     answer: answer,
-    correct: correct
+    correct: correct,
+    timestamp: new Date()  // Add the current date and time
   };
 
   try {
@@ -143,6 +146,7 @@ app.post('/save-student-action', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
 
 // Endpoint to retrieve the actions of all students
 app.get('/student-actions', async (req, res) => {
