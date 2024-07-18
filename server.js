@@ -30,7 +30,7 @@ const database = client.db('GALA2024');
 const activitiesCollection = database.collection('activities');
 const topicsCollection = database.collection('topics');
 const actionsCollection = database.collection('actions');
-
+const learningNodeStatusesCollection = database.collection('learningNodeStatuses');
 
 
 // SET OF THE BACKEND APIs
@@ -103,6 +103,78 @@ app.get('/get-activities', async (req, res) => {
 
 const { ObjectId } = require('mongodb');
 
+
+
+// Endpoint to save the learning node status for a student
+app.post('/learning-node-status', async (req, res) => {
+  const { studentID, eligible } = req.body;
+
+  if (typeof studentID !== 'string' || typeof eligible !== 'boolean') {
+    return res.status(400).send('Invalid input types');
+  }
+
+  const learningNodeStatus = {
+    studentID: studentID,
+    eligible: eligible,
+    timestamp: new Date()  // Add the current date and time
+  };
+
+  try {
+    // Update or insert the learning node status for the student
+    await learningNodeStatusesCollection.updateOne(
+      { studentID: studentID },
+      { $set: learningNodeStatus },
+      { upsert: true }
+    );
+
+    res.status(201).send('Learning node status saved successfully');
+  } catch (error) {
+    console.error('Error saving learning node status:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+// Endpoint to save the learning node status for a student
+app.post('/learning-node-status', async (req, res) => {
+  const { studentID, eligible } = req.body;
+
+  if (typeof studentID !== 'string' || typeof eligible !== 'boolean') {
+    return res.status(400).send('Invalid input types');
+  }
+
+  const learningNodeStatus = {
+    studentID: studentID,
+    eligible: eligible,
+    timestamp: new Date()  // Add the current date and time
+  };
+
+  try {
+    // Update or insert the learning node status for the student
+    await learningNodeStatusesCollection.updateOne(
+      { studentID: studentID },
+      { $set: learningNodeStatus },
+      { upsert: true }
+    );
+
+    res.status(201).send('Learning node status saved successfully');
+  } catch (error) {
+    console.error('Error saving learning node status:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+// Endpoint to retrieve the list of eligible students
+app.get('/eligible-students', async (req, res) => {
+  try {
+    // Retrieve all eligible students from the collection
+    const eligibleStudents = await learningNodeStatusesCollection.find({ eligible: true }).toArray();
+
+    res.status(200).json(eligibleStudents);
+  } catch (error) {
+    console.error('Error retrieving eligible students:', error);
+    res.status(500).send('Internal server error');
+  }
+});
 
 // Endpoint to save a student's action
 app.post('/save-student-action', async (req, res) => {
