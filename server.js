@@ -78,17 +78,49 @@ app.post('/save-activity', async (req, res) => {
 });
 
 
-// endpoint to save material and topics
+// endpoint to save topics
 app.post('/save-topics', async (req, res) => {
-    const { materialUrl, themeName, topics } = req.body;
-    try {
-      const result = await topicsCollection.insertOne({ materialUrl, themeName, topics });
-      res.status(201).send(result);
-    } catch (error) {
+  const { materialUrl, themeName, topics } = req.body;
+  try {
+      const existingTheme = await topicsCollection.findOne({ themeName });
+      if (existingTheme) {
+          // Update the existing document with new topics
+          const result = await topicsCollection.updateOne(
+              { themeName },
+              { $set: { materialUrl, topics } }
+          );
+          res.status(200).send(result);
+      } else {
+          // Insert a new document
+          const result = await topicsCollection.insertOne({ materialUrl, themeName, topics });
+          res.status(201).send(result);
+      }
+  } catch (error) {
       console.error('Error saving topics:', error);
       res.status(500).send('Error saving topics');
+  }
+});
+
+
+
+
+// Endpoint to get topics for a certain theme
+app.get('/get-topics', async (req, res) => {
+  const { themeName } = req.query;
+  try {
+    const topics = await topicsCollection.find({ themeName }).toArray();
+    if (topics.length > 0) {
+      res.status(200).json(topics);
+    } else {
+      res.status(404).send('No topics found for the specified theme');
     }
-  });
+  } catch (error) {
+    console.error('Error fetching topics:', error);
+    res.status(500).send('Error fetching topics');
+  }
+});
+
+
 
 // Endpoint to get all activities
 app.get('/get-activities', async (req, res) => {
@@ -108,44 +140,17 @@ const { ObjectId } = require('mongodb');
 
 // Endpoint to save the learning node status for a student
 app.post('/learning-node-status', async (req, res) => {
-  const { studentID, eligible } = req.body;
+  const { studentID, eligible, currentTopic, currentBloomLevel } = req.body;
 
-  if (typeof studentID !== 'string' || typeof eligible !== 'boolean') {
+  if (typeof studentID !== 'string' || typeof eligible !== 'boolean' || typeof currentTopic !== 'string' || typeof currentBloomLevel !== 'string') {
     return res.status(400).send('Invalid input types');
   }
 
   const learningNodeStatus = {
     studentID: studentID,
     eligible: eligible,
-    timestamp: new Date()  // Add the current date and time
-  };
-
-  try {
-    // Update or insert the learning node status for the student
-    await learningNodeStatusesCollection.updateOne(
-      { studentID: studentID },
-      { $set: learningNodeStatus },
-      { upsert: true }
-    );
-
-    res.status(201).send('Learning node status saved successfully');
-  } catch (error) {
-    console.error('Error saving learning node status:', error);
-    res.status(500).send('Internal server error');
-  }
-});
-
-// Endpoint to save the learning node status for a student
-app.post('/learning-node-status', async (req, res) => {
-  const { studentID, eligible } = req.body;
-
-  if (typeof studentID !== 'string' || typeof eligible !== 'boolean') {
-    return res.status(400).send('Invalid input types');
-  }
-
-  const learningNodeStatus = {
-    studentID: studentID,
-    eligible: eligible,
+    currentTopic: currentTopic,
+    currentBloomLevel: currentBloomLevel,
     timestamp: new Date()  // Add the current date and time
   };
 
