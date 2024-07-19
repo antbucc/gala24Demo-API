@@ -36,7 +36,7 @@ const learningNodeStatusesCollection = database.collection('learningNodeStatuses
 // SET OF THE BACKEND APIs
 // Endpoint to save a new learning activity pair for a specific topic
 app.post('/save-activity', async (req, res) => {
-  const { topic, learningObjective, activityType, assignment, correctSolutions, distractors, easilyDiscardableDistractors, feedback, readingMaterial, bloomlevel } = req.body;
+  const { topic, learningObjective, activityType, assignment, correctSolutions, distractors, easilyDiscardableDistractors, feedback, readingMaterial, bloomlevel, bloomLevelString } = req.body;
   
   const newActivity = {     
     readingMaterial: readingMaterial,
@@ -48,6 +48,7 @@ app.post('/save-activity', async (req, res) => {
     easilyDiscardableDistractors: easilyDiscardableDistractors,
     feedback: feedback,
     bloomLevel: bloomlevel,
+    bloomLevel: bloomLevelString,
   };
 
   try {
