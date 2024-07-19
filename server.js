@@ -48,7 +48,6 @@ app.post('/save-activity', async (req, res) => {
     easilyDiscardableDistractors: easilyDiscardableDistractors,
     feedback: feedback,
     bloomLevel: bloomlevel,
-    bloomLevel: bloomLevelString,
   };
 
   try {
