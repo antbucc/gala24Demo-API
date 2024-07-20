@@ -238,13 +238,17 @@ app.get('/student-actions', async (req, res) => {
   }
 });
 
+
+
 // endpoint to get the first 3 activities of a certain topic
 app.get('/firstNode/:topicID', async (req, res) => {
   const { topicID } = req.params;
   try {
-    const activities = await activitiesCollection.find({ topic: topicID }).limit(3).toArray();
-    if (activities.length > 0) {
-      res.status(200).json(activities);
+    const activitiesDoc = await activitiesCollection.findOne({ topic: topicID });
+    if (activitiesDoc && activitiesDoc.activities) {
+      const firstThreeActivities = activitiesDoc.activities.slice(0, 3);
+      console.log("QUIII: "+firstThreeActivities.length);
+      res.status(200).json(firstThreeActivities);
     } else {
       res.status(404).send('No activities found for the specified topic');
     }
