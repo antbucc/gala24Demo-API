@@ -238,6 +238,22 @@ app.get('/student-actions', async (req, res) => {
   }
 });
 
+// endpoint to get the first 3 activities of a certain topic
+app.get('/firstNode/:topicID', async (req, res) => {
+  const { topicID } = req.params;
+  try {
+    const activities = await activitiesCollection.find({ topic: topicID }).limit(3).toArray();
+    if (activities.length > 0) {
+      res.status(200).json(activities);
+    } else {
+      res.status(404).send('No activities found for the specified topic');
+    }
+  } catch (error) {
+    console.error('Error fetching activities:', error);
+    res.status(500).send('Error fetching activities');
+  }
+});
+
 
 
 
