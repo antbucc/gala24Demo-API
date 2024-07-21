@@ -31,6 +31,7 @@ const activitiesCollection = database.collection('activities');
 const topicsCollection = database.collection('topics');
 const actionsCollection = database.collection('actions');
 const learningNodeStatusesCollection = database.collection('learningNodeStatuses');
+const adaptationsCollection = database.collection('adaptations');
 
 
 // SET OF THE BACKEND APIs
@@ -247,7 +248,6 @@ app.get('/firstNode/:topicID', async (req, res) => {
     const activitiesDoc = await activitiesCollection.findOne({ topic: topicID });
     if (activitiesDoc && activitiesDoc.activities) {
       const firstThreeActivities = activitiesDoc.activities.slice(0, 3);
-      console.log("QUIII: "+firstThreeActivities.length);
       res.status(200).json(firstThreeActivities);
     } else {
       res.status(404).send('No activities found for the specified topic');
@@ -257,6 +257,46 @@ app.get('/firstNode/:topicID', async (req, res) => {
     res.status(500).send('Error fetching activities');
   }
 });
+
+// Endpoint to save adaptations for the eligible and selected students 
+app.post('/save-adaptations', async (req, res) => {
+  const { adaptations } = req.body;
+
+  if (!Array.isArray(adaptations)) {
+    return res.status(400).send('Invalid input type: adaptations should be an array');
+  }
+
+  const validAdaptations = adaptations.every(adaptation => 
+    typeof adaptation.studentID === 'string' && 
+    typeof adaptation.adaptationType === 'string' && 
+    typeof adaptation.adaptationValue === 'string'
+  );
+
+  if (!validAdaptations) {
+    return res.status(400).send('Invalid input: each adaptation should have studentID, adaptationType, and adaptationValue as strings');
+  }
+
+  try {
+    const result = await Promise.all(adaptations.map(async adaptation => {
+      const { studentID, adaptationType, adaptationValue } = adaptation;
+      const adaptationRecord = {
+        studentID,
+        adaptationType,
+        adaptationValue,
+        timestamp: new Date() // Add the current date and time
+      };
+
+      // Insert the adaptation record into the collection
+      return await adaptationsCollection.insertOne(adaptationRecord);
+    }));
+
+    res.status(201).send('Adaptations saved successfully');
+  } catch (error) {
+    console.error('Error saving adaptations:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 
 
 
