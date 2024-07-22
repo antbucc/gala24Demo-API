@@ -241,7 +241,6 @@ app.get('/student-actions', async (req, res) => {
 
 
 
-// endpoint to get the first 3 activities of a certain topic
 app.get('/firstNode/:topicID', async (req, res) => {
   const { topicID } = req.params;
   
@@ -250,8 +249,18 @@ app.get('/firstNode/:topicID', async (req, res) => {
     const activitiesDoc = await activitiesCollection.findOne({ topic: topicID }, { projection: { _id: 1, topic: 1, activities: 1 } });
     
     if (activitiesDoc && activitiesDoc.activities) {
-      // Get the first three activities
-      const firstThreeActivities = activitiesDoc.activities.slice(0, 3);
+      // Filter activities to have unique bloomLevel values
+      const uniqueBloomLevels = [];
+      const distinctActivities = activitiesDoc.activities.filter(activity => {
+        if (!uniqueBloomLevels.includes(activity.bloomLevel)) {
+          uniqueBloomLevels.push(activity.bloomLevel);
+          return true;
+        }
+        return false;
+      });
+      
+      // Get the first three distinct activities
+      const firstThreeActivities = distinctActivities.slice(0, 3);
       
       // Return the document in the desired format
       res.status(200).json({
@@ -267,6 +276,7 @@ app.get('/firstNode/:topicID', async (req, res) => {
     res.status(500).send('Error fetching activities');
   }
 });
+
 
 
 // Endpoint to save adaptations for the eligible and selected students 
