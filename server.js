@@ -249,24 +249,17 @@ app.get('/firstNode/:topicID', async (req, res) => {
     const activitiesDoc = await activitiesCollection.findOne({ topic: topicID }, { projection: { _id: 1, topic: 1, activities: 1 } });
     
     if (activitiesDoc && activitiesDoc.activities) {
-      // Filter activities to have unique bloomLevel values
-      const uniqueBloomLevels = [];
-      const distinctActivities = activitiesDoc.activities.filter(activity => {
-        if (!uniqueBloomLevels.includes(activity.bloomLevel)) {
-          uniqueBloomLevels.push(activity.bloomLevel);
-          return true;
-        }
-        return false;
-      });
+      // Filter activities to get those with bloomLevel "remembering"
+      const rememberingActivities = activitiesDoc.activities.filter(activity => activity.bloomLevel === "Remembering");
       
-      // Get the first three distinct activities
-      const firstThreeActivities = distinctActivities.slice(0, 3);
+      // Get the first three "remembering" activities
+      const firstThreeRememberingActivities = rememberingActivities.slice(0, 3);
       
       // Return the document in the desired format
       res.status(200).json({
         _id: activitiesDoc._id,
         topic: activitiesDoc.topic,
-        activities: firstThreeActivities
+        activities: firstThreeRememberingActivities
       });
     } else {
       res.status(404).send('No activities found for the specified topic');
@@ -276,6 +269,7 @@ app.get('/firstNode/:topicID', async (req, res) => {
     res.status(500).send('Error fetching activities');
   }
 });
+
 
 
 
