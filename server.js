@@ -244,11 +244,21 @@ app.get('/student-actions', async (req, res) => {
 // endpoint to get the first 3 activities of a certain topic
 app.get('/firstNode/:topicID', async (req, res) => {
   const { topicID } = req.params;
+  
   try {
-    const activitiesDoc = await activitiesCollection.findOne({ topic: topicID });
+    // Fetch the document for the specified topic
+    const activitiesDoc = await activitiesCollection.findOne({ topic: topicID }, { projection: { _id: 1, topic: 1, activities: 1 } });
+    
     if (activitiesDoc && activitiesDoc.activities) {
+      // Get the first three activities
       const firstThreeActivities = activitiesDoc.activities.slice(0, 3);
-      res.status(200).json(firstThreeActivities);
+      
+      // Return the document in the desired format
+      res.status(200).json({
+        _id: activitiesDoc._id,
+        topic: activitiesDoc.topic,
+        activities: firstThreeActivities
+      });
     } else {
       res.status(404).send('No activities found for the specified topic');
     }
@@ -257,6 +267,7 @@ app.get('/firstNode/:topicID', async (req, res) => {
     res.status(500).send('Error fetching activities');
   }
 });
+
 
 // Endpoint to save adaptations for the eligible and selected students 
 app.post('/save-adaptations', async (req, res) => {
