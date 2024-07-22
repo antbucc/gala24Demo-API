@@ -271,6 +271,84 @@ app.get('/firstNode/:topicID', async (req, res) => {
 });
 
 
+// Endpoint to get the next 3 activities for a student
+app.get('/next-activities/:studentID', async (req, res) => {
+  const { studentID } = req.params;
+
+  try {
+    // Fetch the student's adaptation record
+    const adaptation = await adaptationsCollection.findOne({ studentID });
+
+    if (adaptation) {
+      const { adaptationType, adaptationValue } = adaptation;
+
+      if (adaptationType === 'change topic') {
+        // Fetch activities for the assigned topic
+        const activitiesDoc = await activitiesCollection.findOne({ topic: adaptationValue }, { projection: { _id: 1, topic: 1, activities: 1 } });
+
+        if (activitiesDoc && activitiesDoc.activities) {
+          const firstThreeActivities = activitiesDoc.activities.slice(0, 3);
+          res.status(200).json({
+            _id: activitiesDoc._id,
+            topic: activitiesDoc.topic,
+            activities: firstThreeActivities
+          });
+        } else {
+          res.status(404).send('No activities found for the specified topic');
+        }
+      } else if (adaptationType === 'increase bloom level') {
+        // Fetch activities for the assigned bloom level
+        const activities = await activitiesCollection.find({ 'activities.bloomLevel': adaptationValue }).toArray();
+        const filteredActivities = activities.flatMap(doc => doc.activities.filter(activity => activity.bloomLevel === adaptationValue));
+        const firstThreeActivities = filteredActivities.slice(0, 3);
+        
+        res.status(200).json({
+          studentID: studentID,
+          activities: firstThreeActivities
+        });
+      }
+    } else {
+      // Student is not in the list of adaptations, proceed with the next topic
+      const studentStatus = await learningNodeStatusesCollection.findOne({ studentID });
+
+      if (!studentStatus) {
+        return res.status(404).send('Student status not found');
+      }
+
+      const currentTopic = studentStatus.currentTopic;
+      const nextTopicDoc = await topicsCollection.findOne({ topics: { $elemMatch: { $gt: currentTopic } } }, { projection: { topics: 1 } });
+
+      if (nextTopicDoc && nextTopicDoc.topics) {
+        const nextTopicIndex = nextTopicDoc.topics.indexOf(currentTopic) + 1;
+        const nextTopic = nextTopicDoc.topics[nextTopicIndex];
+
+        if (nextTopic) {
+          const activitiesDoc = await activitiesCollection.findOne({ topic: nextTopic }, { projection: { _id: 1, topic: 1, activities: 1 } });
+
+          if (activitiesDoc && activitiesDoc.activities) {
+            const firstThreeActivities = activitiesDoc.activities.slice(0, 3);
+            res.status(200).json({
+              _id: activitiesDoc._id,
+              topic: activitiesDoc.topic,
+              activities: firstThreeActivities
+            });
+          } else {
+            res.status(404).send('No activities found for the specified topic');
+          }
+        } else {
+          res.status(404).send('No next topic found');
+        }
+      } else {
+        res.status(404).send('No next topic found');
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching activities:', error);
+    res.status(500).send('Error fetching activities');
+  }
+});
+
+
 
 
 // Endpoint to save adaptations for the eligible and selected students 
