@@ -185,15 +185,16 @@ app.get('/eligible-students', async (req, res) => {
 
 // Endpoint to save a student's action
 app.post('/save-student-action', async (req, res) => {
-  const { studentID, topicID, answer, correct } = req.body;
+  const { studentID, topicID, question, answer, correct } = req.body;
 
-  if (typeof studentID !== 'string' || typeof topicID !== 'string' || typeof answer !== 'string' || typeof correct !== 'boolean') {
+  if (typeof studentID !== 'string' || typeof topicID !== 'string' || typeof question !== 'string' || typeof answer !== 'string' || typeof correct !== 'boolean') {
     return res.status(400).send('Invalid input types');
   }
 
   const newResponse = {
     responseID: new ObjectId(),  // Generate a new ObjectId for the responseID
     topicID: topicID,
+    question: question,
     answer: answer,
     correct: correct,
     timestamp: new Date()  // Add the current date and time
