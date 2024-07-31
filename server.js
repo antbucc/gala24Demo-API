@@ -126,7 +126,7 @@ app.get('/get-topics', async (req, res) => {
 app.get('/questions', async (req, res) => {
   try {
     const questions = await questionsCollection.find().toArray();
-    const response = { topics: questions };
+    const response = { questions };
     res.status(200).json(response);
   } catch (error) {
     console.error('Error fetching questions:', error);
