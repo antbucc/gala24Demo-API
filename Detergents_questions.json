@@ -1,0 +1,262 @@
+{
+    "Components of Detergents": [
+        {
+            "question": "What is a common ingredient in detergents that acts to reduce the surface tension of water?",
+            "options": [
+                "Enzymes",
+                "Surfactants",
+                "Colorants",
+                "Bactericidal agents"
+            ],
+            "correct_answer": "Surfactants"
+        },
+        {
+            "question": "Which of the following is NOT typically found in detergents?",
+            "options": [
+                "Foaming agents",
+                "Stabilizers",
+                "Optical brighteners",
+                "Heavy metals"
+            ],
+            "correct_answer": "Heavy metals"
+        },
+        {
+            "question": "What role do builders play in detergents?",
+            "options": [
+                "Enhance the color of the detergent",
+                "Improve the effectiveness of surfactants",
+                "Act as a fragrance component",
+                "Stabilize the detergent mixture"
+            ],
+            "correct_answer": "Improve the effectiveness of surfactants"
+        },
+        {
+            "question": "Which ingredient in detergents is primarily used to add scent?",
+            "options": [
+                "Bleach-activating ingredients",
+                "Fragrances",
+                "Soil-suspending agents",
+                "Fillers"
+            ],
+            "correct_answer": "Fragrances"
+        },
+        {
+            "question": "Why are enzymes included in detergents?",
+            "options": [
+                "To increase the viscosity",
+                "To break down proteins, fats, and carbohydrates",
+                "To serve as colorants",
+                "To act as antibacterial agents"
+            ],
+            "correct_answer": "To break down proteins, fats, and carbohydrates"
+        }
+    ],
+    "Environmental Impact of Detergents in Aquatic Systems": [
+        {
+            "question": "What is a direct effect of high detergent concentrations in water bodies?",
+            "options": [
+                "Increased water clarity",
+                "Formation of surface foam",
+                "Enhanced fish population growth",
+                "Lower water temperatures"
+            ],
+            "correct_answer": "Formation of surface foam"
+        },
+        {
+            "question": "How does detergent-induced surface foam affect aquatic ecosystems?",
+            "options": [
+                "By improving oxygenation",
+                "By blocking sunlight",
+                "By hindering oxygen transfer from air to water",
+                "By increasing water pH"
+            ],
+            "correct_answer": "By hindering oxygen transfer from air to water"
+        },
+        {
+            "question": "What can be a result of decreased dissolved oxygen levels due to detergents?",
+            "options": [
+                "Increased biodiversity",
+                "Enhanced fish breeding",
+                "Decline in aquatic organism populations",
+                "Improved water quality"
+            ],
+            "correct_answer": "Decline in aquatic organism populations"
+        },
+        {
+            "question": "Which of the following is a physical change in water caused by detergents?",
+            "options": [
+                "Lowered salinity",
+                "Reduced turbidity",
+                "Altered pH levels",
+                "Decreased temperature"
+            ],
+            "correct_answer": "Altered pH levels"
+        },
+        {
+            "question": "What causes the reduction in oxygen absorption in water bodies contaminated with detergents?",
+            "options": [
+                "Increased nutrient levels",
+                "The physical barrier created by surface foam",
+                "Enhanced sunlight penetration",
+                "Algal blooms"
+            ],
+            "correct_answer": "The physical barrier created by surface foam"
+        }
+    ],
+    "Eutrophication Due to Detergents": [
+        {
+            "question": "What component in detergents is primarily responsible for eutrophication?",
+            "options": [
+                "Surfactants",
+                "Phosphates",
+                "Fragrances",
+                "Enzymes"
+            ],
+            "correct_answer": "Phosphates"
+        },
+        {
+            "question": "How do phosphates in detergents contribute to eutrophication?",
+            "options": [
+                "By increasing water acidity",
+                "By promoting excessive algae growth",
+                "By decreasing water temperatures",
+                "By removing oxygen from the air"
+            ],
+            "correct_answer": "By promoting excessive algae growth"
+        },
+        {
+            "question": "What is the primary ecological effect of algal blooms caused by detergents?",
+            "options": [
+                "Increased aquatic biodiversity",
+                "Improved water quality",
+                "Decreased oxygen levels in water",
+                "Enhanced fish health"
+            ],
+            "correct_answer": "Decreased oxygen levels in water"
+        },
+        {
+            "question": "Why is the decomposition of algae in eutrophicated waters problematic?",
+            "options": [
+                "It increases oxygen levels in the water",
+                "It causes a rise in water temperature",
+                "It consumes oxygen, leading to hypoxia",
+                "It provides nutrients to other aquatic plants"
+            ],
+            "correct_answer": "It consumes oxygen, leading to hypoxia"
+        },
+        {
+            "question": "Which organisms are most directly affected by the oxygen depletion caused by eutrophication?",
+            "options": [
+                "Aquatic plants",
+                "Fish and other aquatic animals",
+                "Terrestrial birds",
+                "Insects"
+            ],
+            "correct_answer": "Fish and other aquatic animals"
+        }
+    ],
+    "Detergents and Soil Quality": [
+        {
+            "question": "What effect do detergents have on soil when present in high concentrations?",
+            "options": [
+                "Decrease in soil salinity",
+                "Improvement in soil fertility",
+                "Deterioration of soil structure",
+                "Increase in organic matter"
+            ],
+            "correct_answer": "Deterioration of soil structure"
+        },
+        {
+            "question": "How can detergents lead to increased soil salinity?",
+            "options": [
+                "By breaking down soil minerals",
+                "By depositing salts and surfactants",
+                "By reducing soil's water retention capacity",
+                "By enhancing plant nutrient uptake"
+            ],
+            "correct_answer": "By depositing salts and surfactants"
+        },
+        {
+            "question": "What is a potential long-term effect of detergent contamination on soil?",
+            "options": [
+                "Enhanced plant growth",
+                "Increased soil fertility",
+                "Soil becoming water-repellent",
+                "Decreased soil pH"
+            ],
+            "correct_answer": "Soil becoming water-repellent"
+        },
+        {
+            "question": "How do detergents affect the electrical conductivity of soil?",
+            "options": [
+                "They decrease electrical conductivity",
+                "They have no effect on conductivity",
+                "They increase electrical conductivity",
+                "They neutralize soil pH"
+            ],
+            "correct_answer": "They increase electrical conductivity"
+        },
+        {
+            "question": "What can result from the increased soil salinity due to detergents?",
+            "options": [
+                "Enhanced water retention",
+                "Decreased plant health",
+                "Increased microbial activity",
+                "Improved soil aeration"
+            ],
+            "correct_answer": "Decreased plant health"
+        }
+    ],
+    "Industrial Laundry and Pollution": [
+        {
+            "question": "What is a major environmental concern associated with industrial laundries?",
+            "options": [
+                "High energy consumption",
+                "Use of biodegradable detergents",
+                "Large-scale wastewater discharge",
+                "Minimal waste production"
+            ],
+            "correct_answer": "Large-scale wastewater discharge"
+        },
+        {
+            "question": "What type of contaminants are commonly found in wastewater from industrial laundries?",
+            "options": [
+                "Heavy metals",
+                "Organic and inorganic contaminants",
+                "Pesticides",
+                "Only organic matter"
+            ],
+            "correct_answer": "Organic and inorganic contaminants"
+        },
+        {
+            "question": "How does the wastewater from industrial laundries affect the environment?",
+            "options": [
+                "It enhances aquatic life",
+                "It reduces water pollution",
+                "It contributes to environmental pollution",
+                "It improves water quality"
+            ],
+            "correct_answer": "It contributes to environmental pollution"
+        },
+        {
+            "question": "What is a typical volume of wastewater produced by an industrial laundry machine per day?",
+            "options": [
+                "10 cubic meters",
+                "20 cubic meters",
+                "40 cubic meters",
+                "100 cubic meters"
+            ],
+            "correct_answer": "40 cubic meters"
+        },
+        {
+            "question": "Besides detergents, what other contaminants are commonly found in the wastewater from industrial laundries?",
+            "options": [
+                "Sand and gravel",
+                "Mineral oils",
+                "Herbal residues",
+                "Plastics"
+            ],
+            "correct_answer": "Mineral oils"
+        }
+    ]
+}

@@ -1,0 +1,902 @@
+[
+    {
+        "question": "What percentage of the plastic produced annually ends up in the environment?",
+        "options": [
+            "10%",
+            "25%",
+            "50%",
+            "75%"
+        ],
+        "correct_answer": "25%",
+        "topicID": "Environmental Plastic Pollution",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is the equivalent tonnage of plastic that ends up in the environment each year?",
+        "options": [
+            "40.5 million tons",
+            "60.5 million tons",
+            "80.5 million tons",
+            "100.5 million tons"
+        ],
+        "correct_answer": "80.5 million tons",
+        "topicID": "Environmental Plastic Pollution",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "By what year is environmental plastic pollution expected to triple if no action is taken?",
+        "options": [
+            "2030",
+            "2040",
+            "2050",
+            "2060"
+        ],
+        "correct_answer": "2040",
+        "topicID": "Environmental Plastic Pollution",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "Plastic pollution has been proposed as an indicator of which geological era?",
+        "options": [
+            "Holocene",
+            "Anthropocene",
+            "Cenozoic",
+            "Precambrian"
+        ],
+        "correct_answer": "Anthropocene",
+        "topicID": "Environmental Plastic Pollution",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What major change is needed to prevent the tripling of plastic pollution by 2040?",
+        "options": [
+            "Increase in plastic production",
+            "No changes are needed",
+            "Immediate action to reduce plastic waste",
+            "Switching to paper packaging"
+        ],
+        "correct_answer": "Immediate action to reduce plastic waste",
+        "topicID": "Environmental Plastic Pollution",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "Between the 1950s and 2015, how many tonnes of plastic were produced globally?",
+        "options": [
+            "230 million tonnes",
+            "530 million tonnes",
+            "830 million tonnes",
+            "1 billion tonnes"
+        ],
+        "correct_answer": "830 million tonnes",
+        "topicID": "Plastic Production and Waste",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What percentage of this plastic has been properly disposed of through incineration or recycling?",
+        "options": [
+            "10%",
+            "21%",
+            "35%",
+            "50%"
+        ],
+        "correct_answer": "21%",
+        "topicID": "Plastic Production and Waste",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "Where does the majority of the improperly disposed plastic end up?",
+        "options": [
+            "Oceans",
+            "Atmosphere",
+            "Landfills",
+            "Forests"
+        ],
+        "correct_answer": "Landfills",
+        "topicID": "Plastic Production and Waste",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What percentage of total waste is estimated to be plastic waste globally?",
+        "options": [
+            "20%-40%",
+            "40%-60%",
+            "60%-80%",
+            "80%-90%"
+        ],
+        "correct_answer": "60%-80%",
+        "topicID": "Plastic Production and Waste",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What type of plastic items are a major contributor to beach litter in Europe?",
+        "options": [
+            "Fishing nets",
+            "Single-use plastic items",
+            "Electronic waste",
+            "Construction materials"
+        ],
+        "correct_answer": "Single-use plastic items",
+        "topicID": "Plastic Production and Waste",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "Why is plastic commonly used in food and beverage packaging?",
+        "options": [
+            "It adds flavor to the food",
+            "It accelerates spoilage",
+            "It preserves food quality and extends shelf life",
+            "It makes food more nutritious"
+        ],
+        "correct_answer": "It preserves food quality and extends shelf life",
+        "topicID": "Plastic in Food and Beverage Packaging",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What type of plastic items contribute significantly to environmental leakage?",
+        "options": [
+            "Reusable plastics",
+            "Single-use plastics",
+            "Industrial plastics",
+            "Biodegradable plastics"
+        ],
+        "correct_answer": "Single-use plastics",
+        "topicID": "Plastic in Food and Beverage Packaging",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "How many plastic bottles are purchased globally every minute?",
+        "options": [
+            "500,000",
+            "750,000",
+            "1 million",
+            "2 million"
+        ],
+        "correct_answer": "1 million",
+        "topicID": "Plastic in Food and Beverage Packaging",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What percentage of beach litter in Europe is made up of single-use plastic items?",
+        "options": [
+            "20%",
+            "35%",
+            "50%",
+            "65%"
+        ],
+        "correct_answer": "50%",
+        "topicID": "Plastic in Food and Beverage Packaging",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is a major benefit of using plastic for food and beverage packaging?",
+        "options": [
+            "It is cheaper than glass",
+            "It is more visually appealing",
+            "It is lighter than metal",
+            "It ensures food safety due to its inert nature"
+        ],
+        "correct_answer": "It ensures food safety due to its inert nature",
+        "topicID": "Plastic in Food and Beverage Packaging",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What are microplastics?",
+        "options": [
+            "Particles larger than 1 meter",
+            "Particles smaller than 1 cm",
+            "Particles used in construction",
+            "Particles made from organic materials"
+        ],
+        "correct_answer": "Particles smaller than 1 cm",
+        "topicID": "Plastic Pollution in Aquatic Ecosystems",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "How do plastics primarily enter aquatic ecosystems?",
+        "options": [
+            "Through volcanic activity",
+            "Through wastewater treatment plants, cargo shipping, and urban runoff",
+            "Through direct discharge by marine animals",
+            "Through natural weathering of rocks"
+        ],
+        "correct_answer": "Through wastewater treatment plants, cargo shipping, and urban runoff",
+        "topicID": "Plastic Pollution in Aquatic Ecosystems",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is a significant source of microplastics in oceans?",
+        "options": [
+            "Photodegradation of larger plastic items",
+            "Natural mineral deposits",
+            "Decomposition of organic waste",
+            "Dust from deserts"
+        ],
+        "correct_answer": "Photodegradation of larger plastic items",
+        "topicID": "Plastic Pollution in Aquatic Ecosystems",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "How long can microplastics persist in the environment?",
+        "options": [
+            "Days to weeks",
+            "Months to years",
+            "Hundreds to thousands of years",
+            "Indefinitely"
+        ],
+        "correct_answer": "Hundreds to thousands of years",
+        "topicID": "Plastic Pollution in Aquatic Ecosystems",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is one major impact of microplastics on marine life?",
+        "options": [
+            "They increase oxygen levels in water",
+            "They provide habitats for fish",
+            "They can be ingested by marine animals, causing harm",
+            "They promote the growth of coral reefs"
+        ],
+        "correct_answer": "They can be ingested by marine animals, causing harm",
+        "topicID": "Plastic Pollution in Aquatic Ecosystems",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is one way plastic debris affects marine animals?",
+        "options": [
+            "It provides nutrients for growth",
+            "It entangles animals, leading to injury or death",
+            "It helps fish camouflage",
+            "It decomposes rapidly, reducing pollution"
+        ],
+        "correct_answer": "It entangles animals, leading to injury or death",
+        "topicID": "Impact on Biodiversity",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "Which species are known to mistake plastic bags for jellyfish?",
+        "options": [
+            "Dolphins",
+            "Sea turtles",
+            "Sharks",
+            "Whales"
+        ],
+        "correct_answer": "Sea turtles",
+        "topicID": "Impact on Biodiversity",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "How does plastic ingestion affect birds like albatrosses?",
+        "options": [
+            "It increases their fertility",
+            "It provides essential minerals",
+            "It leads to malnutrition and possible death",
+            "It makes them more resistant to diseases"
+        ],
+        "correct_answer": "It leads to malnutrition and possible death",
+        "topicID": "Impact on Biodiversity",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is one consequence of high plastic debris accumulation in certain areas?",
+        "options": [
+            "It helps control invasive species",
+            "It facilitates the spread of invasive species",
+            "It reduces biodiversity",
+            "It enhances water quality"
+        ],
+        "correct_answer": "It facilitates the spread of invasive species",
+        "topicID": "Impact on Biodiversity",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "Which of the following is NOT a detrimental effect of plastic pollution on biodiversity?",
+        "options": [
+            "Entanglement of animals",
+            "Increase in nutritional value for marine life",
+            "Ingestion leading to malnutrition",
+            "Exposure to harmful chemicals and biological processes"
+        ],
+        "correct_answer": "Increase in nutritional value for marine life",
+        "topicID": "Impact on Biodiversity",
+        "Skill": "Plastic"
+    },
+    {
+        "question": "What is the primary role of bees in ecosystems?",
+        "options": [
+            "Producing honey",
+            "Pollinating plants",
+            "Serving as food for birds",
+            "Building hives"
+        ],
+        "correct_answer": "Pollinating plants",
+        "topicID": "The Role of Bees in Ecosystems",
+        "Skill": "Bee"
+    },
+    {
+        "question": "How do bees contribute to the reproduction of plants?",
+        "options": [
+            "By consuming plant seeds",
+            "By transferring pollen between flowers",
+            "By nurturing plant roots",
+            "By deterring pests"
+        ],
+        "correct_answer": "By transferring pollen between flowers",
+        "topicID": "The Role of Bees in Ecosystems",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which of the following is a direct outcome of bee pollination?",
+        "options": [
+            "Increased rainfall",
+            "Fruit and seed production",
+            "Erosion control",
+            "Water purification"
+        ],
+        "correct_answer": "Fruit and seed production",
+        "topicID": "The Role of Bees in Ecosystems",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Why are bees considered crucial for food chains?",
+        "options": [
+            "They are primary producers",
+            "They pollinate plants that produce fruits, nuts, and seeds",
+            "They act as predators for harmful insects",
+            "They provide natural fertilizers"
+        ],
+        "correct_answer": "They pollinate plants that produce fruits, nuts, and seeds",
+        "topicID": "The Role of Bees in Ecosystems",
+        "Skill": "Bee"
+    },
+    {
+        "question": "In what way do bees contribute to biodiversity?",
+        "options": [
+            "By consuming various plant species",
+            "By pollinating a wide range of plants",
+            "By competing with other pollinators",
+            "By maintaining soil health"
+        ],
+        "correct_answer": "By pollinating a wide range of plants",
+        "topicID": "The Role of Bees in Ecosystems",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which factor is a primary contributor to the decline in bee populations?",
+        "options": [
+            "Increased honey consumption",
+            "Habitat loss",
+            "Urban expansion",
+            "Natural predators"
+        ],
+        "correct_answer": "Habitat loss",
+        "topicID": "Causes and Consequences of Bee Population Decline",
+        "Skill": "Bee"
+    },
+    {
+        "question": "How does pesticide use affect bee populations?",
+        "options": [
+            "It enhances their productivity",
+            "It reduces their immunity",
+            "It increases their lifespan",
+            "It improves hive health"
+        ],
+        "correct_answer": "It reduces their immunity",
+        "topicID": "Causes and Consequences of Bee Population Decline",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which of the following is NOT a factor in the decline of bee populations?",
+        "options": [
+            "Climate change",
+            "Proliferation of parasites",
+            "Increased food variety",
+            "Habitat loss"
+        ],
+        "correct_answer": "Increased food variety",
+        "topicID": "Causes and Consequences of Bee Population Decline",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What is a consequence of declining bee populations on agriculture?",
+        "options": [
+            "Reduced need for fertilizers",
+            "Decreased crop yields",
+            "Increased water usage",
+            "Enhanced soil fertility"
+        ],
+        "correct_answer": "Decreased crop yields",
+        "topicID": "Causes and Consequences of Bee Population Decline",
+        "Skill": "Bee"
+    },
+    {
+        "question": "How can the decline in bee populations impact food security?",
+        "options": [
+            "By increasing the diversity of crops",
+            "By reducing the availability of pollinated crops",
+            "By promoting the use of artificial pollination",
+            "By decreasing pest populations"
+        ],
+        "correct_answer": "By reducing the availability of pollinated crops",
+        "topicID": "Causes and Consequences of Bee Population Decline",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What is a characteristic symptom of Colony Collapse Disorder?",
+        "options": [
+            "Hive overcrowding",
+            "Presence of many dead bees outside the hive",
+            "Absence of adult bees with no signs of disease",
+            "Increase in honey production"
+        ],
+        "correct_answer": "Absence of adult bees with no signs of disease",
+        "topicID": "Colony Collapse Disorder (CCD)",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What is often found in hives affected by CCD?",
+        "options": [
+            "Increased honey production",
+            "Numerous dead bees inside the hive",
+            "Immature bees (brood) and food stores",
+            "Predatory insects"
+        ],
+        "correct_answer": "Immature bees (brood) and food stores",
+        "topicID": "Colony Collapse Disorder (CCD)",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which of the following is NOT a suspected cause of CCD?",
+        "options": [
+            "Pesticides",
+            "Pathogens",
+            "Food scarcity",
+            "Overpopulation of bees"
+        ],
+        "correct_answer": "Overpopulation of bees",
+        "topicID": "Colony Collapse Disorder (CCD)",
+        "Skill": "Bee"
+    },
+    {
+        "question": "How does CCD primarily affect bee populations?",
+        "options": [
+            "By reducing the hive\u2019s food supply",
+            "By causing early death of adult worker bees",
+            "By increasing disease resistance",
+            "By enhancing hive expansion"
+        ],
+        "correct_answer": "By causing early death of adult worker bees",
+        "topicID": "Colony Collapse Disorder (CCD)",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What makes diagnosing CCD challenging?",
+        "options": [
+            "The presence of clear disease symptoms",
+            "The absence of adult bees without clear causes",
+            "The visible signs of hive destruction",
+            "The overproduction of honey"
+        ],
+        "correct_answer": "The absence of adult bees without clear causes",
+        "topicID": "Colony Collapse Disorder (CCD)",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which of the following is a common urban measure to support bee populations?",
+        "options": [
+            "Removing all flowers from city parks",
+            "Constructing bee houses",
+            "Increasing pesticide use",
+            "Planting only non-flowering plants"
+        ],
+        "correct_answer": "Constructing bee houses",
+        "topicID": "Urban Initiatives for Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "How do green roofs benefit urban bee populations?",
+        "options": [
+            "By providing nesting spaces for bees",
+            "By deterring birds from preying on bees",
+            "By offering diverse floral resources",
+            "By keeping bees isolated from urban activities"
+        ],
+        "correct_answer": "By offering diverse floral resources",
+        "topicID": "Urban Initiatives for Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What is the purpose of planting bee-favored plants in urban areas?",
+        "options": [
+            "To increase the aesthetic value of the area",
+            "To provide bees with abundant nectar and pollen",
+            "To attract tourists interested in bees",
+            "To reduce the local bee population"
+        ],
+        "correct_answer": "To provide bees with abundant nectar and pollen",
+        "topicID": "Urban Initiatives for Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which urban space is often targeted for bee conservation efforts?",
+        "options": [
+            "Industrial zones",
+            "Residential neighborhoods",
+            "Public gardens and parks",
+            "Shopping centers"
+        ],
+        "correct_answer": "Public gardens and parks",
+        "topicID": "Urban Initiatives for Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What challenge is associated with urban bee conservation efforts?",
+        "options": [
+            "Lack of public interest",
+            "Targeting only managed green spaces",
+            "Excessive growth of bee populations",
+            "Increased pest infestations"
+        ],
+        "correct_answer": "Targeting only managed green spaces",
+        "topicID": "Urban Initiatives for Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "How does bee conservation align with global sustainable development goals (SDGs)?",
+        "options": [
+            "By focusing on urbanization",
+            "By promoting biodiversity and food security",
+            "By reducing industrial pollution",
+            "By increasing global honey production"
+        ],
+        "correct_answer": "By promoting biodiversity and food security",
+        "topicID": "Global Sustainable Development Goals and Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Which SDG is directly supported by conserving bee populations?",
+        "options": [
+            "SDG 7: Affordable and Clean Energy",
+            "SDG 2: Zero Hunger",
+            "SDG 14: Life Below Water",
+            "SDG 16: Peace, Justice, and Strong Institutions"
+        ],
+        "correct_answer": "SDG 2: Zero Hunger",
+        "topicID": "Global Sustainable Development Goals and Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What is a key benefit of bees to agricultural sustainability?",
+        "options": [
+            "Reduced need for artificial pollination",
+            "Increased carbon sequestration",
+            "Higher yields of pollinator-dependent crops",
+            "Lower agricultural water use"
+        ],
+        "correct_answer": "Higher yields of pollinator-dependent crops",
+        "topicID": "Global Sustainable Development Goals and Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "Why is maintaining bee populations critical for ecosystem services?",
+        "options": [
+            "Bees are primary decomposers",
+            "Bees regulate water cycles",
+            "Bees pollinate many crops and wild plants",
+            "Bees control pest populations"
+        ],
+        "correct_answer": "Bees pollinate many crops and wild plants",
+        "topicID": "Global Sustainable Development Goals and Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What role do bees play in supporting the SDG of 'Life on Land'?",
+        "options": [
+            "They help in soil conservation",
+            "They contribute to reforestation efforts",
+            "They support plant diversity through pollination",
+            "They aid in urban waste management"
+        ],
+        "correct_answer": "They support plant diversity through pollination",
+        "topicID": "Global Sustainable Development Goals and Bee Conservation",
+        "Skill": "Bee"
+    },
+    {
+        "question": "What is a common ingredient in detergents that acts to reduce the surface tension of water?",
+        "options": [
+            "Enzymes",
+            "Surfactants",
+            "Colorants",
+            "Bactericidal agents"
+        ],
+        "correct_answer": "Surfactants",
+        "topicID": "Components of Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Which of the following is NOT typically found in detergents?",
+        "options": [
+            "Foaming agents",
+            "Stabilizers",
+            "Optical brighteners",
+            "Heavy metals"
+        ],
+        "correct_answer": "Heavy metals",
+        "topicID": "Components of Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What role do builders play in detergents?",
+        "options": [
+            "Enhance the color of the detergent",
+            "Improve the effectiveness of surfactants",
+            "Act as a fragrance component",
+            "Stabilize the detergent mixture"
+        ],
+        "correct_answer": "Improve the effectiveness of surfactants",
+        "topicID": "Components of Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Which ingredient in detergents is primarily used to add scent?",
+        "options": [
+            "Bleach-activating ingredients",
+            "Fragrances",
+            "Soil-suspending agents",
+            "Fillers"
+        ],
+        "correct_answer": "Fragrances",
+        "topicID": "Components of Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Why are enzymes included in detergents?",
+        "options": [
+            "To increase the viscosity",
+            "To break down proteins, fats, and carbohydrates",
+            "To serve as colorants",
+            "To act as antibacterial agents"
+        ],
+        "correct_answer": "To break down proteins, fats, and carbohydrates",
+        "topicID": "Components of Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What is a direct effect of high detergent concentrations in water bodies?",
+        "options": [
+            "Increased water clarity",
+            "Formation of surface foam",
+            "Enhanced fish population growth",
+            "Lower water temperatures"
+        ],
+        "correct_answer": "Formation of surface foam",
+        "topicID": "Environmental Impact of Detergents in Aquatic Systems",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "How does detergent-induced surface foam affect aquatic ecosystems?",
+        "options": [
+            "By improving oxygenation",
+            "By blocking sunlight",
+            "By hindering oxygen transfer from air to water",
+            "By increasing water pH"
+        ],
+        "correct_answer": "By hindering oxygen transfer from air to water",
+        "topicID": "Environmental Impact of Detergents in Aquatic Systems",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What can be a result of decreased dissolved oxygen levels due to detergents?",
+        "options": [
+            "Increased biodiversity",
+            "Enhanced fish breeding",
+            "Decline in aquatic organism populations",
+            "Improved water quality"
+        ],
+        "correct_answer": "Decline in aquatic organism populations",
+        "topicID": "Environmental Impact of Detergents in Aquatic Systems",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Which of the following is a physical change in water caused by detergents?",
+        "options": [
+            "Lowered salinity",
+            "Reduced turbidity",
+            "Altered pH levels",
+            "Decreased temperature"
+        ],
+        "correct_answer": "Altered pH levels",
+        "topicID": "Environmental Impact of Detergents in Aquatic Systems",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What causes the reduction in oxygen absorption in water bodies contaminated with detergents?",
+        "options": [
+            "Increased nutrient levels",
+            "The physical barrier created by surface foam",
+            "Enhanced sunlight penetration",
+            "Algal blooms"
+        ],
+        "correct_answer": "The physical barrier created by surface foam",
+        "topicID": "Environmental Impact of Detergents in Aquatic Systems",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What component in detergents is primarily responsible for eutrophication?",
+        "options": [
+            "Surfactants",
+            "Phosphates",
+            "Fragrances",
+            "Enzymes"
+        ],
+        "correct_answer": "Phosphates",
+        "topicID": "Eutrophication Due to Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "How do phosphates in detergents contribute to eutrophication?",
+        "options": [
+            "By increasing water acidity",
+            "By promoting excessive algae growth",
+            "By decreasing water temperatures",
+            "By removing oxygen from the air"
+        ],
+        "correct_answer": "By promoting excessive algae growth",
+        "topicID": "Eutrophication Due to Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What is the primary ecological effect of algal blooms caused by detergents?",
+        "options": [
+            "Increased aquatic biodiversity",
+            "Improved water quality",
+            "Decreased oxygen levels in water",
+            "Enhanced fish health"
+        ],
+        "correct_answer": "Decreased oxygen levels in water",
+        "topicID": "Eutrophication Due to Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Why is the decomposition of algae in eutrophicated waters problematic?",
+        "options": [
+            "It increases oxygen levels in the water",
+            "It causes a rise in water temperature",
+            "It consumes oxygen, leading to hypoxia",
+            "It provides nutrients to other aquatic plants"
+        ],
+        "correct_answer": "It consumes oxygen, leading to hypoxia",
+        "topicID": "Eutrophication Due to Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Which organisms are most directly affected by the oxygen depletion caused by eutrophication?",
+        "options": [
+            "Aquatic plants",
+            "Fish and other aquatic animals",
+            "Terrestrial birds",
+            "Insects"
+        ],
+        "correct_answer": "Fish and other aquatic animals",
+        "topicID": "Eutrophication Due to Detergents",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What effect do detergents have on soil when present in high concentrations?",
+        "options": [
+            "Decrease in soil salinity",
+            "Improvement in soil fertility",
+            "Deterioration of soil structure",
+            "Increase in organic matter"
+        ],
+        "correct_answer": "Deterioration of soil structure",
+        "topicID": "Detergents and Soil Quality",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "How can detergents lead to increased soil salinity?",
+        "options": [
+            "By breaking down soil minerals",
+            "By depositing salts and surfactants",
+            "By reducing soil's water retention capacity",
+            "By enhancing plant nutrient uptake"
+        ],
+        "correct_answer": "By depositing salts and surfactants",
+        "topicID": "Detergents and Soil Quality",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What is a potential long-term effect of detergent contamination on soil?",
+        "options": [
+            "Enhanced plant growth",
+            "Increased soil fertility",
+            "Soil becoming water-repellent",
+            "Decreased soil pH"
+        ],
+        "correct_answer": "Soil becoming water-repellent",
+        "topicID": "Detergents and Soil Quality",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "How do detergents affect the electrical conductivity of soil?",
+        "options": [
+            "They decrease electrical conductivity",
+            "They have no effect on conductivity",
+            "They increase electrical conductivity",
+            "They neutralize soil pH"
+        ],
+        "correct_answer": "They increase electrical conductivity",
+        "topicID": "Detergents and Soil Quality",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What can result from the increased soil salinity due to detergents?",
+        "options": [
+            "Enhanced water retention",
+            "Decreased plant health",
+            "Increased microbial activity",
+            "Improved soil aeration"
+        ],
+        "correct_answer": "Decreased plant health",
+        "topicID": "Detergents and Soil Quality",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What is a major environmental concern associated with industrial laundries?",
+        "options": [
+            "High energy consumption",
+            "Use of biodegradable detergents",
+            "Large-scale wastewater discharge",
+            "Minimal waste production"
+        ],
+        "correct_answer": "Large-scale wastewater discharge",
+        "topicID": "Industrial Laundry and Pollution",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What type of contaminants are commonly found in wastewater from industrial laundries?",
+        "options": [
+            "Heavy metals",
+            "Organic and inorganic contaminants",
+            "Pesticides",
+            "Only organic matter"
+        ],
+        "correct_answer": "Organic and inorganic contaminants",
+        "topicID": "Industrial Laundry and Pollution",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "How does the wastewater from industrial laundries affect the environment?",
+        "options": [
+            "It enhances aquatic life",
+            "It reduces water pollution",
+            "It contributes to environmental pollution",
+            "It improves water quality"
+        ],
+        "correct_answer": "It contributes to environmental pollution",
+        "topicID": "Industrial Laundry and Pollution",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "What is a typical volume of wastewater produced by an industrial laundry machine per day?",
+        "options": [
+            "10 cubic meters",
+            "20 cubic meters",
+            "40 cubic meters",
+            "100 cubic meters"
+        ],
+        "correct_answer": "40 cubic meters",
+        "topicID": "Industrial Laundry and Pollution",
+        "Skill": "Detergents"
+    },
+    {
+        "question": "Besides detergents, what other contaminants are commonly found in the wastewater from industrial laundries?",
+        "options": [
+            "Sand and gravel",
+            "Mineral oils",
+            "Herbal residues",
+            "Plastics"
+        ],
+        "correct_answer": "Mineral oils",
+        "topicID": "Industrial Laundry and Pollution",
+        "Skill": "Detergents"
+    }
+]

@@ -32,6 +32,7 @@ const topicsCollection = database.collection('topics');
 const actionsCollection = database.collection('actions');
 const learningNodeStatusesCollection = database.collection('learningNodeStatuses');
 const adaptationsCollection = database.collection('adaptations');
+const questionsCollection = database.collection('questions');
 
 
 // SET OF THE BACKEND APIs
@@ -118,6 +119,18 @@ app.get('/get-topics', async (req, res) => {
   } catch (error) {
     console.error('Error fetching topics:', error);
     res.status(500).send('Error fetching topics');
+  }
+});
+
+// Endpoint to get all quizzes
+app.get('/questions', async (req, res) => {
+  try {
+    const questions = await questionsCollection.find().toArray();
+    const response = { topics: questions };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Error fetching questions:', error);
+    res.status(500).send('Error fetching questions');
   }
 });
 
