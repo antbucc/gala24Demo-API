@@ -1,5 +1,6 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const { ObjectId } = require('mongodb');  
 
 const cors = require('cors');
 require('dotenv').config();
@@ -210,18 +211,22 @@ app.get('/eligible-students', async (req, res) => {
   }
 });
 
-// Endpoint to save a student's action
 
+// Endpoint to save a student's action
 app.post('/save-student-action', async (req, res) => {
   const { studentID, topicID, question, questionID, answer, correct } = req.body;
 
+  // Validate input types
   if (typeof studentID !== 'string' || typeof topicID !== 'string' || typeof question !== 'string' || typeof questionID !== 'string' || typeof answer !== 'string' || typeof correct !== 'boolean') {
     return res.status(400).send('Invalid input types');
   }
 
   try {
+    // Convert questionID to ObjectId
+    const questionObjectId = new ObjectId(questionID);
+
     // Fetch the question from the database to get the SkillIDs
-    const questionData = await questionsCollection.findOne({ _id: questionID });
+    const questionData = await questionsCollection.findOne({ _id: questionObjectId });
 
     if (!questionData) {
       return res.status(404).send('Question not found');
@@ -262,6 +267,7 @@ app.post('/save-student-action', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
 
 
 // Endpoint to retrieve the actions of all students
