@@ -211,23 +211,33 @@ app.get('/eligible-students', async (req, res) => {
 });
 
 // Endpoint to save a student's action
-app.post('/save-student-action', async (req, res) => {
-  const { studentID, topicID, question, answer, correct } = req.body;
 
-  if (typeof studentID !== 'string' || typeof topicID !== 'string' || typeof question !== 'string' || typeof answer !== 'string' || typeof correct !== 'boolean') {
+app.post('/save-student-action', async (req, res) => {
+  const { studentID, topicID, question, questionID, answer, correct } = req.body;
+
+  if (typeof studentID !== 'string' || typeof topicID !== 'string' || typeof question !== 'string' || typeof questionID !== 'string' || typeof answer !== 'string' || typeof correct !== 'boolean') {
     return res.status(400).send('Invalid input types');
   }
 
-  const newResponse = {
-    responseID: new ObjectId(),  // Generate a new ObjectId for the responseID
-    topicID: topicID,
-    question: question,
-    answer: answer,
-    correct: correct,
-    timestamp: new Date()  // Add the current date and time
-  };
-
   try {
+    // Fetch the question from the database to get the SkillIDs
+    const questionData = await questionsCollection.findOne({ questionID: questionID });
+
+    if (!questionData) {
+      return res.status(404).send('Question not found');
+    }
+
+    const newResponse = {
+      responseID: new ObjectId(),  // Generate a new ObjectId for the responseID
+      topicID: topicID,
+      question: question,
+      questionID: questionID,
+      answer: answer,
+      correct: correct,
+      SkillIDs: questionData.SkillIDs || [],  // Fetch the SkillIDs from the question data
+      timestamp: new Date()  // Add the current date and time
+    };
+
     // Find the student data by studentID
     let studentData = await actionsCollection.findOne({ studentID: studentID });
 
