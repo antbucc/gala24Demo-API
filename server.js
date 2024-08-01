@@ -221,7 +221,7 @@ app.post('/save-student-action', async (req, res) => {
 
   try {
     // Fetch the question from the database to get the SkillIDs
-    const questionData = await questionsCollection.findOne({ questionID: questionID });
+    const questionData = await questionsCollection.findOne({ _id: questionID });
 
     if (!questionData) {
       return res.status(404).send('Question not found');
