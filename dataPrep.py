@@ -1,5 +1,14 @@
 import json
 
+# Define the mapping of main skills to their respective IDs
+skill_id_mapping = {
+    'Plastic': '66ab571cc92cc90278b759a1',
+    'Detergents': '66ab5734c92cc90278b759a2',
+    'Bees': '66ab575fc92cc90278b759a3'
+}
+
+
+
 def process_file(file_path, main_skill):
     # Load the JSON data from the provided file
     with open(file_path) as f:
@@ -12,7 +21,8 @@ def process_file(file_path, main_skill):
     for topic, questions in data.items():
         for question in questions:
             question['topicID'] = topic
-            question['Skill'] = main_skill
+            question['Skills'] = [main_skill]
+            question['SkillIDs'] = [skill_id_mapping[main_skill]]
             all_questions.append(question)
 
     return all_questions
@@ -34,7 +44,7 @@ def merge_files(output_file, file_paths_and_skills):
 # Define the file paths, main skills, and output file name
 file_paths_and_skills = [
     ('plastic_pollution_questions.json', 'Plastic'),
-    ('bee_conservation_questions.json', 'Bee'),
+    ('bee_conservation_questions.json', 'Bees'),
     ('Detergents_questions.json', 'Detergents')
 ]
 output_file = 'merged_questions.json'

@@ -33,6 +33,7 @@ const actionsCollection = database.collection('actions');
 const learningNodeStatusesCollection = database.collection('learningNodeStatuses');
 const adaptationsCollection = database.collection('adaptations');
 const questionsCollection = database.collection('questions');
+const skillsCollection = database.collection('skills');
 
 
 // SET OF THE BACKEND APIs
@@ -103,6 +104,19 @@ app.post('/save-topics', async (req, res) => {
   }
 });
 
+
+
+// Endpoint to get all the skills
+app.get('/skills', async (req, res) => {
+  try {
+    const skills = await skillsCollection.find().toArray();
+    const response = { skills };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    res.status(500).send('Error fetching skills');
+  }
+});
 
 
 
