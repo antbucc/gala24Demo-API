@@ -7,6 +7,8 @@ require('dotenv').config();
 
 const { v4: uuidv4 } = require('uuid');
 
+
+
 const app = express();
 
 app.use(cors());
@@ -229,10 +231,20 @@ app.post('/save-student-action', async (req, res) => {
 
   try {
     // Convert questionID to ObjectId
-    const questionObjectId = new ObjectId(questionID);
+    //const questionObjectId = new ObjectId(questionID);
+
 
     // Fetch the question from the database to get the SkillIDs
-    const questionData = await questionsCollection.findOne({ _id: questionObjectId });
+   const questionData = await activitiesCollection.findOne({
+  activities: {
+    $elemMatch: {
+      id: questionID
+    }
+  }
+});
+
+
+
 
     if (!questionData) {
       return res.status(404).send('Question not found');
@@ -245,7 +257,7 @@ app.post('/save-student-action', async (req, res) => {
       questionID: questionID,
       answer: answer,
       correct: correct,
-      SkillIDs: questionData.SkillIDs || [],  // Fetch the SkillIDs from the question data
+      SkillIDs: questionData.activities[0].skillIDs || [],  // Fetch the SkillIDs from the question data
       timestamp: new Date()  // Add the current date and time
     };
 
