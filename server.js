@@ -309,8 +309,8 @@ app.get('/firstNode/:skillID', async (req, res) => {
         // Select one activity randomly
         const randomActivity = filteredActivities[Math.floor(Math.random() * filteredActivities.length)];
 
-        // Return the selected activity as a skillNode
-        res.status(200).json({ skillNode: randomActivity });
+        // Return the selected activity 
+        res.status(200).json({ activity: randomActivity });
       } else {
         res.status(404).send('No activities found with the specified skillID');
       }
