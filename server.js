@@ -142,13 +142,18 @@ app.get('/get-topics', async (req, res) => {
 app.get('/questions', async (req, res) => {
   try {
     const questions = await activitiesCollection.find().toArray();
-    const response = { questions };
+
+    // Extract activities from each question
+    const activities = questions.flatMap(question => question.activities);
+
+    const response = { activities };
     res.status(200).json(response);
   } catch (error) {
     console.error('Error fetching questions:', error);
     res.status(500).send('Error fetching questions');
   }
 });
+
 
 
 
