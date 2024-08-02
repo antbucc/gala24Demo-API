@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb');
 const cors = require('cors');
 require('dotenv').config();
 
-
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
@@ -40,9 +40,10 @@ const skillsCollection = database.collection('skills');
 // SET OF THE BACKEND APIs
 // Endpoint to save a new learning activity pair for a specific topic
 app.post('/save-activity', async (req, res) => {
-  const { topic, learningObjective, activityType, assignment, correctSolutions, distractors, easilyDiscardableDistractors, feedback, readingMaterial, bloomLevel } = req.body;
-  
-  const newActivity = {     
+  const { topic, learningObjective, activityType, assignment, correctSolutions, distractors, easilyDiscardableDistractors, feedback, readingMaterial, bloomLevel, skillIDs } = req.body;
+
+  const newActivity = {
+    id: uuidv4(), // Generate a unique ID
     readingMaterial: readingMaterial,
     learningObjective: learningObjective,
     activityType: activityType,
@@ -52,8 +53,8 @@ app.post('/save-activity', async (req, res) => {
     easilyDiscardableDistractors: easilyDiscardableDistractors,
     feedback: feedback,
     bloomLevel: bloomLevel,
+    skillIDs: skillIDs
   };
-
 
   try {
     // Find the learning activity by topic
