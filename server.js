@@ -290,7 +290,6 @@ app.get('/student-actions', async (req, res) => {
 });
 
 
-
 app.get('/firstNode/:skillID', async (req, res) => {
   const { skillID } = req.params;
 
@@ -306,8 +305,15 @@ app.get('/firstNode/:skillID', async (req, res) => {
         filteredActivities = filteredActivities.concat(doc.activities.filter(activity => activity.skillIDs.includes(skillID)));
       });
 
-      // Return the filtered activities
-      res.status(200).json(filteredActivities);
+      if (filteredActivities.length > 0) {
+        // Select one activity randomly
+        const randomActivity = filteredActivities[Math.floor(Math.random() * filteredActivities.length)];
+
+        // Return the selected activity as a skillNode
+        res.status(200).json(randomActivity);
+      } else {
+        res.status(404).send('No activities found with the specified skillID');
+      }
     } else {
       res.status(404).send('No activities found');
     }
@@ -316,7 +322,6 @@ app.get('/firstNode/:skillID', async (req, res) => {
     res.status(500).send('Error fetching activities');
   }
 });
-
 
 // Endpoint to get the next 3 activities for a student
 app.get('/next-activities/:studentID', async (req, res) => {
