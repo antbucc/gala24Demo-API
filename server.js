@@ -141,7 +141,7 @@ app.get('/get-topics', async (req, res) => {
 // Endpoint to get all quizzes
 app.get('/questions', async (req, res) => {
   try {
-    const questions = await questionsCollection.find().toArray();
+    const questions = await activitiesCollection.find().toArray();
     const response = { questions };
     res.status(200).json(response);
   } catch (error) {
