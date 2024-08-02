@@ -290,7 +290,7 @@ app.get('/student-actions', async (req, res) => {
 });
 
 
-app.get('/firstNode/:skillID', async (req, res) => {
+app.get('/firstActivity/:skillID', async (req, res) => {
   const { skillID } = req.params;
 
   try {
