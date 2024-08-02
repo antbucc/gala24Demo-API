@@ -291,28 +291,25 @@ app.get('/student-actions', async (req, res) => {
 
 
 
-app.get('/firstNode/:topicID', async (req, res) => {
-  const { topicID } = req.params;
-  
+app.get('/firstNode/:skillID', async (req, res) => {
+  const { skillID } = req.params;
+
   try {
-    // Fetch the document for the specified topic
-    const activitiesDoc = await activitiesCollection.findOne({ topic: topicID }, { projection: { _id: 1, topic: 1, activities: 1 } });
-    
-    if (activitiesDoc && activitiesDoc.activities) {
-      // Filter activities to get those with bloomLevel "remembering"
-      const rememberingActivities = activitiesDoc.activities.filter(activity => activity.bloomLevel === "Remembering");
-      
-      // Get the first three "remembering" activities
-      const firstThreeRememberingActivities = rememberingActivities.slice(0, 3);
-      
-      // Return the document in the desired format
-      res.status(200).json({
-        _id: activitiesDoc._id,
-        topic: activitiesDoc.topic,
-        activities: firstThreeRememberingActivities
+    // Fetch all documents and filter activities based on skillID
+    const activitiesDocs = await activitiesCollection.find({}, { projection: { activities: 1 } }).toArray();
+
+    if (activitiesDocs && activitiesDocs.length > 0) {
+      let filteredActivities = [];
+
+      // Iterate over all documents to filter activities
+      activitiesDocs.forEach(doc => {
+        filteredActivities = filteredActivities.concat(doc.activities.filter(activity => activity.skillIDs.includes(skillID)));
       });
+
+      // Return the filtered activities
+      res.status(200).json(filteredActivities);
     } else {
-      res.status(404).send('No activities found for the specified topic');
+      res.status(404).send('No activities found');
     }
   } catch (error) {
     console.error('Error fetching activities:', error);
