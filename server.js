@@ -287,19 +287,26 @@ app.post('/save-student-action', async (req, res) => {
 });
 
 
-
-// Endpoint to retrieve the actions of all students
-app.get('/student-actions', async (req, res) => {
+// Endpoint to get logs of all actions done by students
+app.get('/students-logs', async (req, res) => {
   try {
-    // Retrieve all student actions from the collection
-    const studentActions = await actionsCollection.find({}).toArray();
+      const actions = await actionsCollection.find({}).toArray();
 
-    res.status(200).json(studentActions);
+      const results = actions.flatMap(action => 
+          action.responses.map(response => ({
+              studentID: action.studentID,
+              questionID: response.questionID,
+              result: response.correct ? 'True' : 'False'
+          }))
+      );
+
+      res.json(results);
   } catch (error) {
-    console.error('Error retrieving student actions:', error);
-    res.status(500).send('Internal server error');
+      console.error('Error retrieving student actions:', error);
+      res.status(500).send('Internal server error');
   }
 });
+
 
 
 app.get('/firstActivity/:skillID', async (req, res) => {
