@@ -296,7 +296,7 @@ app.get('/students-logs', async (req, res) => {
           action.responses.map(response => ({
               studentID: action.studentID,
               questionID: response.questionID,
-              result: response.correct ? 'True' : 'False'
+              response: response.correct ? 'True' : 'False'
           }))
       );
 
