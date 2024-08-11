@@ -1,6 +1,9 @@
+
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const { ObjectId } = require('mongodb');  
+
+const axios = require('axios');
 
 const cors = require('cors');
 require('dotenv').config();
@@ -471,6 +474,93 @@ app.post('/save-adaptations', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
+
+// API client configuration for cognitive services
+const apiClient = axios.create({
+  baseURL: 'https://gala24-cogdiagnosis-production.up.railway.app',
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
+
+// Endpoint to trigger model training
+app.get('/train', async (req, res) => {
+  try {
+    console.log("Sending request to train model...");
+    const response = await apiClient.get('/train'); // Using relative path since baseURL is set
+    console.log("Model training successful:", response.data);
+    
+    // Send the successful response data back to the client
+    res.status(200).json(response.data);
+  } catch (error) {
+    if (error.response) {
+      console.error('Server responded with a status other than 2xx:', error.response.statusText);
+      console.error('Status Code:', error.response.status);
+      console.error('Response Data:', error.response.data);
+      
+      // Send the error response back to the client
+      res.status(error.response.status).send(error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      console.error('Request details:', error.config);
+      
+      // Send a 500 status with a custom message back to the client
+      res.status(500).send('No response received from the API');
+    } else {
+      console.error('Error setting up request:', error.message);
+      
+      // Send a 500 status with the error message back to the client
+      res.status(500).send('Error setting up request: ' + error.message);
+    }
+  }
+});
+
+// Endpoint to execute a diagnose with the provided student IDs
+app.post('/diagnose', async (req, res) => {
+  const { studentID } = req.body;
+
+  // Validate that studentID is an array
+  if (!Array.isArray(studentID)) {
+    return res.status(400).send('Invalid input: studentID should be an array');
+  }
+
+  try {
+    console.log("Sending diagnose request for student IDs:", studentID);
+    
+    // Send the POST request to the external API with the student IDs
+    const response = await apiClient.post('/diagnose', { studentID });
+
+    console.log("Diagnose successful:", response.data);
+
+    // Send the successful response data back to the client
+    res.status(200).json(response.data);
+  } catch (error) {
+    if (error.response) {
+      console.error('Server responded with a status other than 2xx:', error.response.statusText);
+      console.error('Status Code:', error.response.status);
+      console.error('Response Data:', error.response.data);
+      
+      // Send the error response back to the client
+      res.status(error.response.status).send(error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      console.error('Request details:', error.config);
+      
+      // Send a 500 status with a custom message back to the client
+      res.status(500).send('No response received from the API');
+    } else {
+      console.error('Error setting up request:', error.message);
+      
+      // Send a 500 status with the error message back to the client
+      res.status(500).send('Error setting up request: ' + error.message);
+    }
+  }
+});
+
+
+
 
 
 
