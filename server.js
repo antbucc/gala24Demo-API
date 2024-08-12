@@ -325,7 +325,7 @@ app.get('/students-logs', async (req, res) => {
 
 app.get('/firstActivity', async (req, res) => {
   // returns the first activity in the "Plastic" Skill
-  const { skillID } = '66ab571cc92cc90278b759a1';
+  const skillID  = "66ab571cc92cc90278b759a1";
 
   try {
     // Fetch all documents and filter activities based on skillID
@@ -521,6 +521,7 @@ app.get('/train', async (req, res) => {
 // Endpoint to execute a diagnose with the provided student IDs
 app.post('/diagnose', async (req, res) => {
   const { studentID } = req.body;
+  
 
   // Validate that studentID is an array
   if (!Array.isArray(studentID)) {
