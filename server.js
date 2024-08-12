@@ -10,6 +10,9 @@ require('dotenv').config();
 
 const { v4: uuidv4 } = require('uuid');
 
+let diagnose = null; // Global variable to store the diagnosis data
+
+
 
 
 const app = express();
@@ -21,6 +24,8 @@ const port = process.env.PORT || 5002;
 
 
 const uri = process.env.MONGO_URI;
+
+
 
 const client = new MongoClient(uri);
 
@@ -436,6 +441,105 @@ app.get('/next-activities/:studentID', async (req, res) => {
 
 
 
+
+// Route to get the next activity for a list of student IDs
+app.post('/next-activity', async (req, res) => {
+  const students = req.body.studentID;
+  console.log("Received student IDs:", students);
+
+  try {
+      // Step 1: Call the diagnosis API
+      const diagnoseData = await Diagnose(students);
+      console.log("Diagnosis API Response Data:", JSON.stringify(diagnoseData));
+
+      // Step 2: Identify the weakest skill for each student
+      let recommendationsInput = diagnoseData.map(student => {
+          const studentID = student.studentID;
+          const skills = student.skills;
+
+          // Find the skill with the lowest value
+          const weakestSkill = Object.keys(skills).reduce((a, b) => skills[a] < skills[b] ? a : b);
+
+          return {
+              studentID,
+              skill: weakestSkill,
+              threshold: 0.5 // Assuming threshold is 0.5
+          };
+      });
+
+      console.log("Recommendations Input:", JSON.stringify(recommendationsInput));
+
+      // Step 3: Call the recommend API
+      const recommendResponse = await axios.post('https://gala24-cogdiagnosis-production.up.railway.app/recommend', recommendationsInput);
+      console.log("Recommend API Response Status:", recommendResponse.status);
+      console.log("Recommend API Response Data:", JSON.stringify(recommendResponse.data));
+
+      const allRecommendations = recommendResponse.data;
+
+      // Step 4: Select only one recommendation per student
+      const selectedRecommendations = allRecommendations.map(recommendation => {
+          return {
+              studentID: recommendation.studentID,
+              skill: recommendation.skill,
+              threshold: recommendation.threshold,
+              recommendation: recommendation.recommendations[0] // Select the first recommendation only
+          };
+      });
+
+      // Step 5: Return the selected recommendations to the client
+      res.json(selectedRecommendations);
+
+  } catch (error) {
+      console.error("Error:", error.message);
+      if (error.response) {
+          console.error("Error Response Status:", error.response.status);
+          console.error("Error Response Data:", JSON.stringify(error.response.data));
+      }
+      res.status(500).json({ error: "An error occurred while processing your request." });
+  }
+});
+
+const Diagnose = async (studentIDs) => {
+  const apiClient = axios.create({
+    baseURL: 'https://gala24demo-api-production.up.railway.app/',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  try {
+    const response = await apiClient.post('/diagnose', { studentID: studentIDs });
+    console.log("Diagnosis API Response:", response.data);
+    return response.data; // Return the API response data
+  } catch (error) {
+    if (error.response) {
+      console.error('Server responded with a status other than 2xx:', error.response.statusText);
+      console.error('Status Code:', error.response.status);
+      console.error('Response Data:', error.response.data);
+      
+      throw {
+        message: 'Server Error',
+        status: error.response.status,
+        data: error.response.data,
+      };
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      console.error('Request details:', error.config);
+      
+      throw {
+        message: 'No response received from server',
+        request: error.request,
+      };
+    } else {
+      console.error('Error setting up request:', error.message);
+      
+      throw {
+        message: 'Request setup error',
+        error: error.message,
+      };
+    }
+  }
+};
 
 // Endpoint to save adaptations for the eligible and selected students 
 app.post('/save-adaptations', async (req, res) => {
