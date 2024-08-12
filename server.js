@@ -560,8 +560,49 @@ app.post('/diagnose', async (req, res) => {
 });
 
 
+// Endpoint to recommend the next learning activities for a set of students
 
+// Endpoint to get recommendations based on provided student skill thresholds
+app.post('/recommend', async (req, res) => {
+  const recommendationsRequest = req.body;
 
+  // Validate that the request body is an array of objects
+  if (!Array.isArray(recommendationsRequest) || recommendationsRequest.some(item => typeof item !== 'object')) {
+    return res.status(400).send('Invalid input: Request body should be an array of objects');
+  }
+
+  try {
+    console.log("Sending recommend request with the following data:", recommendationsRequest);
+    
+    // Send the POST request to the external API with the recommendation data
+    const response = await apiClient.post('/recommend', recommendationsRequest);
+
+    console.log("Recommendation successful:", response.data);
+
+    // Send the successful response data back to the client
+    res.status(200).json(response.data);
+  } catch (error) {
+    if (error.response) {
+      console.error('Server responded with a status other than 2xx:', error.response.statusText);
+      console.error('Status Code:', error.response.status);
+      console.error('Response Data:', error.response.data);
+      
+      // Send the error response back to the client
+      res.status(error.response.status).send(error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      console.error('Request details:', error.config);
+      
+      // Send a 500 status with a custom message back to the client
+      res.status(500).send('No response received from the API');
+    } else {
+      console.error('Error setting up request:', error.message);
+      
+      // Send a 500 status with the error message back to the client
+      res.status(500).send('Error setting up request: ' + error.message);
+    }
+  }
+});
 
 
 
