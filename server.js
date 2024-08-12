@@ -325,7 +325,7 @@ app.get('/students-logs', async (req, res) => {
 
 app.get('/firstActivity', async (req, res) => {
   // returns the first activity in the "Plastic" Skill
-  const { skillID } = "66ab571cc92cc90278b759a1";
+  const { skillID } = '66ab571cc92cc90278b759a1';
 
   try {
     // Fetch all documents and filter activities based on skillID
