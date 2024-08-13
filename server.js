@@ -448,11 +448,16 @@ app.post('/next-activity', async (req, res) => {
   console.log("Received student IDs:", students);
 
   try {
-      // Step 1: Call the diagnosis API
+
+    //Step 1: call the train API
+    const trainData = await Train();
+    console.log("Train:", JSON.stringify(trainData));
+
+    // Step 2: Call the diagnosis API
       const diagnoseData = await Diagnose(students);
       console.log("Diagnosis API Response Data:", JSON.stringify(diagnoseData));
 
-      // Step 2: Identify the weakest skill for each student
+      // Step 3: Identify the weakest skill for each student
       let recommendationsInput = diagnoseData.map(student => {
           const studentID = student.studentID;
           const skills = student.skills;
@@ -469,7 +474,7 @@ app.post('/next-activity', async (req, res) => {
 
       console.log("Recommendations Input:", JSON.stringify(recommendationsInput));
 
-      // Step 3: Call the recommend API
+      // Step 4: Call the recommend API
       const recommendResponse = await axios.post('https://gala24-cogdiagnosis-production.up.railway.app/recommend', recommendationsInput);
       console.log("Recommend API Response Status:", recommendResponse.status);
       console.log("Recommend API Response Data:", JSON.stringify(recommendResponse.data));
@@ -510,6 +515,48 @@ const Diagnose = async (studentIDs) => {
   try {
     const response = await apiClient.post('/diagnose', { studentID: studentIDs });
     console.log("Diagnosis API Response:", response.data);
+    return response.data; // Return the API response data
+  } catch (error) {
+    if (error.response) {
+      console.error('Server responded with a status other than 2xx:', error.response.statusText);
+      console.error('Status Code:', error.response.status);
+      console.error('Response Data:', error.response.data);
+      
+      throw {
+        message: 'Server Error',
+        status: error.response.status,
+        data: error.response.data,
+      };
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      console.error('Request details:', error.config);
+      
+      throw {
+        message: 'No response received from server',
+        request: error.request,
+      };
+    } else {
+      console.error('Error setting up request:', error.message);
+      
+      throw {
+        message: 'Request setup error',
+        error: error.message,
+      };
+    }
+  }
+};
+
+const Train = async () => {
+  const apiClient = axios.create({
+    baseURL: 'https://gala24demo-api-production.up.railway.app/',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  try {
+    const response = await apiClient.get('/train');
+    console.log("Train API Response:", response.data);
     return response.data; // Return the API response data
   } catch (error) {
     if (error.response) {
@@ -666,11 +713,10 @@ app.post('/diagnose', async (req, res) => {
 });
 
 
-// Endpoint to recommend the next learning activities for a set of students
-
 // Endpoint to get recommendations based on provided student skill thresholds
 app.post('/recommend', async (req, res) => {
   const recommendationsRequest = req.body;
+
 
   // Validate that the request body is an array of objects
   if (!Array.isArray(recommendationsRequest) || recommendationsRequest.some(item => typeof item !== 'object')) {
