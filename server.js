@@ -628,6 +628,55 @@ app.post('/save-adaptations', async (req, res) => {
 });
 
 
+// Endpoint to save or update difficulties with studentID and idealDifficulty
+app.post('/save-difficulties', async (req, res) => {
+  const { difficulties } = req.body;
+
+  if (!Array.isArray(difficulties)) {
+    return res.status(400).send('Invalid input type: difficulties should be an array');
+  }
+
+  const validDifficulties = difficulties.every(difficulty => 
+    typeof difficulty.studentID === 'string' && 
+    typeof difficulty.idealDifficulty === 'string'
+  );
+
+  if (!validDifficulties) {
+    return res.status(400).send('Invalid input: each difficulty should have studentID and idealDifficulty as strings');
+  }
+
+  try {
+    const result = await Promise.all(difficulties.map(async difficulty => {
+      const { studentID, idealDifficulty } = difficulty;
+      const difficultyRecord = {
+        studentID,
+        idealDifficulty,
+        timestamp: new Date() // Add the current date and time
+      };
+
+      // Check if a difficulty for this studentID already exists
+      const existingRecord = await difficultiesCollection.findOne({ studentID });
+
+      if (existingRecord) {
+        // Update the existing record with the new idealDifficulty and timestamp
+        return await difficultiesCollection.updateOne(
+          { studentID },
+          { $set: difficultyRecord }
+        );
+      } else {
+        // Insert a new record if no existing record is found
+        return await difficultiesCollection.insertOne(difficultyRecord);
+      }
+    }));
+
+    res.status(201).send('Difficulties saved or updated successfully');
+  } catch (error) {
+    console.error('Error saving difficulties:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
 // API client configuration for cognitive services
 const apiClient = axios.create({
   baseURL: 'https://gala24-cogdiagnosis-production.up.railway.app',
