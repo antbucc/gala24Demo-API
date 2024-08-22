@@ -633,17 +633,19 @@ app.post('/save-adaptations', async (req, res) => {
 app.post('/save-difficulties', async (req, res) => {
   const { difficulties } = req.body;
 
+  // Validate that `difficulties` is an array
   if (!Array.isArray(difficulties)) {
     return res.status(400).send('Invalid input type: difficulties should be an array');
   }
 
+  // Validate each difficulty object
   const validDifficulties = difficulties.every(difficulty => 
     typeof difficulty.studentID === 'string' && 
-    typeof difficulty.idealDifficulty === 'string'
+    typeof difficulty.idealDifficulty === 'number'
   );
 
   if (!validDifficulties) {
-    return res.status(400).send('Invalid input: each difficulty should have studentID and idealDifficulty as strings');
+    return res.status(400).send('Invalid input: each difficulty should have studentID as a string and idealDifficulty as a number');
   }
 
   try {
@@ -676,6 +678,7 @@ app.post('/save-difficulties', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
 
 
 // API client configuration for cognitive services
