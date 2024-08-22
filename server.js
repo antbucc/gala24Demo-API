@@ -441,69 +441,78 @@ app.get('/next-activities/:studentID', async (req, res) => {
 });
 
 
+// Route to get the next activity for a single student ID
+app.post('/next-activity/:studentID', async (req, res) => {
+  const { studentID } = req.params;
 
+  if (!studentID || typeof studentID !== 'string') {
+    return res.status(400).json({ error: 'Invalid input: studentID is required and should be a string' });
+  }
 
-// Route to get the next activity for a list of student IDs
-app.post('/next-activity', async (req, res) => {
-  const students = req.body.studentID;
-  console.log("Received student IDs:", students);
+  console.log("Received student ID:", studentID);
 
   try {
+    // Step 1: Fetch the current idealDifficulty for the student from the database
+    const studentRecord = await difficultiesCollection.findOne({ studentID });
 
-    //Step 1: call the train API
+    if (!studentRecord) {
+      return res.status(404).json({ error: `No record found for studentID: ${studentID}` });
+    }
+
+    const threshold = studentRecord.idealDifficulty;
+    console.log(`Using threshold (idealDifficulty) for student ${studentID}: ${threshold}`);
+
+    // Step 2: Call the train API
     const trainData = await Train();
     console.log("Train:", JSON.stringify(trainData));
 
-    // Step 2: Call the diagnosis API
-      const diagnoseData = await Diagnose(students);
-      console.log("Diagnosis API Response Data:", JSON.stringify(diagnoseData));
+    // Step 3: Call the diagnosis API
+    const diagnoseData = await Diagnose([studentID]); // Wrap studentID in an array for compatibility
+    console.log("Diagnosis API Response Data:", JSON.stringify(diagnoseData));
 
-      // Step 3: Identify the weakest skill for each student
-      let recommendationsInput = diagnoseData.map(student => {
-          const studentID = student.studentID;
-          const skills = student.skills;
+    // Step 4: Identify the weakest skill for the student
+    const skills = diagnoseData[0].skills;
 
-          // Find the skill with the lowest value
-          const weakestSkill = Object.keys(skills).reduce((a, b) => skills[a] < skills[b] ? a : b);
+    // Find the skill with the lowest value
+    const weakestSkill = Object.keys(skills).reduce((a, b) => skills[a] < skills[b] ? a : b);
 
-          return {
-              studentID,
-              skill: weakestSkill,
-              threshold: 0.5 // Assuming threshold is 0.5
-          };
-      });
+    const recommendationsInput = [
+      {
+        studentID,
+        skill: weakestSkill,
+        threshold: threshold // Use the threshold from the DB
+      }
+    ];
 
-      console.log("Recommendations Input:", JSON.stringify(recommendationsInput));
+    console.log("Recommendations Input:", JSON.stringify(recommendationsInput));
 
-      // Step 4: Call the recommend API
-      const recommendResponse = await axios.post('https://gala24-cogdiagnosis-production.up.railway.app/recommend', recommendationsInput);
-      console.log("Recommend API Response Status:", recommendResponse.status);
-      console.log("Recommend API Response Data:", JSON.stringify(recommendResponse.data));
+    // Step 5: Call the recommend API
+    const recommendResponse = await axios.post('https://gala24-cogdiagnosis-production.up.railway.app/recommend', recommendationsInput);
+    console.log("Recommend API Response Status:", recommendResponse.status);
+    console.log("Recommend API Response Data:", JSON.stringify(recommendResponse.data));
 
-      const allRecommendations = recommendResponse.data;
+    const recommendation = recommendResponse.data[0]; // Assuming the response is an array with one recommendation
 
-      // Step 4: Select only one recommendation per student
-      const selectedRecommendations = allRecommendations.map(recommendation => {
-          return {
-              studentID: recommendation.studentID,
-              skill: recommendation.skill,
-              threshold: recommendation.threshold,
-              recommendation: recommendation.recommendations[0] // Select the first recommendation only
-          };
-      });
-
-      // Step 5: Return the selected recommendations to the client
-      res.json(selectedRecommendations);
+    // Step 6: Return the selected recommendation to the client
+    res.json({
+      studentID: recommendation.studentID,
+      skill: recommendation.skill,
+      threshold: recommendation.threshold,
+      recommendation: recommendation.recommendations[0] // Select the first recommendation only
+    });
 
   } catch (error) {
-      console.error("Error:", error.message);
-      if (error.response) {
-          console.error("Error Response Status:", error.response.status);
-          console.error("Error Response Data:", JSON.stringify(error.response.data));
-      }
-      res.status(500).json({ error: "An error occurred while processing your request." });
+    console.error("Error:", error.message);
+    if (error.response) {
+      console.error("Error Response Status:", error.response.status);
+      console.error("Error Response Data:", JSON.stringify(error.response.data));
+    }
+    res.status(500).json({ error: "An error occurred while processing your request." });
   }
 });
+
+
+
 
 const Diagnose = async (studentIDs) => {
   const apiClient = axios.create({
