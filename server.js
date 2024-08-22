@@ -685,6 +685,7 @@ app.post('/save-difficulties', async (req, res) => {
         );
       } else {
         // Insert a new record if no existing record is found
+        console.log("here we define a new entry");
         return await difficultiesCollection.insertOne(difficultyRecord);
       }
     }));
