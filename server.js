@@ -440,7 +440,6 @@ app.get('/next-activities/:studentID', async (req, res) => {
   }
 });
 
-
 // Route to get the next activity for a single student ID
 app.post('/next-activity/:studentID', async (req, res) => {
   const { studentID } = req.params;
@@ -455,12 +454,15 @@ app.post('/next-activity/:studentID', async (req, res) => {
     // Step 1: Fetch the current idealDifficulty for the student from the database
     const studentRecord = await difficultiesCollection.findOne({ studentID });
 
+    let threshold;
+    
     if (!studentRecord) {
-      return res.status(404).json({ error: `No record found for studentID: ${studentID}` });
+      console.log(`No record found for studentID: ${studentID}. Using default threshold: 5.0`);
+      threshold = 5.0; // Use default threshold if no record is found
+    } else {
+      threshold = studentRecord.idealDifficulty;
+      console.log(`Using idealDifficulty for student ${studentID}: ${threshold}`);
     }
-
-    const threshold = studentRecord.idealDifficulty;
-    console.log(`Using threshold (idealDifficulty) for student ${studentID}: ${threshold}`);
 
     // Step 2: Call the train API
     const trainData = await Train();
@@ -480,7 +482,7 @@ app.post('/next-activity/:studentID', async (req, res) => {
       {
         studentID,
         skill: weakestSkill,
-        threshold: threshold // Use the threshold from the DB
+        threshold: threshold // Use the threshold from the DB or default value
       }
     ];
 
@@ -492,14 +494,20 @@ app.post('/next-activity/:studentID', async (req, res) => {
     console.log("Recommend API Response Data:", JSON.stringify(recommendResponse.data));
 
     const recommendation = recommendResponse.data[0]; // Assuming the response is an array with one recommendation
+    const activityID = recommendation.recommendations[0].activity; // Assuming the first recommendation contains an activityID
 
-    // Step 6: Return the selected recommendation to the client
-    res.json({
-      studentID: recommendation.studentID,
-      skill: recommendation.skill,
-      threshold: recommendation.threshold,
-      recommendation: recommendation.recommendations[0] // Select the first recommendation only
-    });
+    // Step 6: Retrieve the activity document from the database using the activityID
+    const activitiesDocs = await activitiesCollection.find({}, { projection: { activities: 1 } }).toArray();
+
+    // Find the activity within the retrieved documents
+    const activity = activitiesDocs.flatMap(doc => doc.activities).find(act => act.activityID === activityID);
+
+    if (!activity) {
+      return res.status(404).json({ error: 'Activity not found' });
+    }
+
+    // Step 7: Return the activity to the client
+    res.status(200).json({ activity });
 
   } catch (error) {
     console.error("Error:", error.message);
