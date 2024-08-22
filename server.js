@@ -45,6 +45,7 @@ const learningNodeStatusesCollection = database.collection('learningNodeStatuses
 const adaptationsCollection = database.collection('adaptations');
 const questionsCollection = database.collection('questions');
 const skillsCollection = database.collection('skills');
+const difficultiesCollection = database.collection('difficulties');
 
 
 // SET OF THE BACKEND APIs
